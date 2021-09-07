@@ -1,5 +1,7 @@
 # SKA SDC2 Team “SoFiA”
 
+[![Linter](https://github.com/axshen/SKA-SDC2-SoFiA/actions/workflows/linter.yml/badge.svg)](https://github.com/axshen/SKA-SDC2-SoFiA/actions/workflows/linter.yml)
+
 ## Overview
 
 This reporsitory contains information, scripts and setup files in relation to the participation of team “SoFiA” in the [SKA Science Data Challenge 2](https://sdc2.astronomers.skatelescope.org/) (SDC2) which closed on 31 July 2021. Our team used the
