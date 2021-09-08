@@ -26,7 +26,7 @@ Software versions other than the ones listed here may work as well, but have not
 In addition, access to an **HPC environment** with adequate resources and availability of the **Slurm workload manager** is required. For maximal speed, **80 compute nodes**, each with 27 GB of RAM and 8 parallel threads, would be required. However, SoFiA can be run without any problem on systems with fewer nodes/threads, although execution of the pipeline would take longer in this case.
 
 
-## FLowchart
+## Flowchart
 
 The following flowchart illustrates the individual steps taken by our team to run the source finder and convert the output into a single source catalogue that can be uploaded to the SDC2 scoring service. The individual steps are explained in the following sections of this document.
 
