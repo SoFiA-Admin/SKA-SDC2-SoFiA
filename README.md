@@ -30,7 +30,7 @@ In addition, access to an **HPC environment** with adequate resources and availa
 
 The following flowchart illustrates the individual steps taken by our team to run the source finder and convert the output into a single source catalogue that can be uploaded to the SDC2 scoring service. The individual steps are explained in the following sections of this document.
 
-![alt text](images/Team_SoFiA_Flowchart.png)
+![Flowchart](images/Team_SoFiA_Flowchart.png)
 
 
 ## Running SoFiA
@@ -78,9 +78,13 @@ Once loaded, the first step will be to discard all detections that are **cut off
 * Subset Name: `clean`
 * Expression: `flag < 1`
 
+![Screenshot](images/screenshot_topcat_1_labelled.png)
+
 Next, we need to select the new subset in the TOPCAT **main window** by setting:
 
 * Row Subset: `clean`
+
+![Screenshot](images/screenshot_topcat_2_labelled.png)
 
 The remaining sources can then be cross-matched using TOPCAT’s **Internal Match** algorithm with the following settings:
 
@@ -92,6 +96,8 @@ The remaining sources can then be cross-matched using TOPCAT’s **Internal Matc
 * Dec column: `dec` (degrees)
 * X column: `freq`
 * Action: Eliminate All But First of Each Group
+
+![Screenshot](images/screenshot_topcat_3_labelled.png)
 
 This should create a new table named `match(1)` with all duplicate detections removed. Duplicates are here defined as detections that are located within 10.5 arcsec (~1.5 beam sizes) and 1.2 MHz (~380 km/s at redshift 0.5) of each other. The new table can now be **saved** again in **VOTable format** under a new name, for example `merged_catalogue_clean.xml`.
 
