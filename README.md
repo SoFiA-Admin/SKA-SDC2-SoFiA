@@ -35,7 +35,9 @@ The following flowchart illustrates the individual steps taken by our team to ru
 
 ## Running SoFiA
 
-All of the configuration files required to run SoFiA on the full SDC2 data cube are located in the `sofia` folder. In order to launch the SoFiA run, all files contained in the folder `sofia` must be copied into the directory where the SDC2 data cube (`sky_full_v2.fits`) is located. It is further assumed that SoFiA is installed and can be launched with the command `sofia`. SoFiA can then be executed by simply running the
+We used SoFiA as the core source finding pipeline. We enabled the spectral **noise scaling** algorithm in SoFiA to correct for frequency-dependent variations in the noise level. In addition, we flagged a radius of 5 pixels around the positions of bright (> 7 mJy) **continuum sources** to remove any residual continuum emission. SoFiA’s **S+C finder** was then run with a detection threshold of 3.8, spatial filter sizes of 0, 3 and 6 pixels and spectral filter sizes of 0, 3, 7, 15 and 31 channels. The spatial and spectral linking radius was set to 2 pixels/channels, and a minimum size requirement of 3 pixels/channels was imposed. Finally, SoFiA’s **reliability filter** was enabled with a reliability threshold of 0.1, an integrated signal-to-noise ratio threshold of 1.5 and a reliability kernel scale factor of 0.3.
+
+The corresponding configuration files for running SoFiA on the full SDC2 data cube are located in the `sofia` folder. In order to launch the SoFiA run, all files contained in the folder `sofia` must be copied into the directory where the SDC2 data cube (`sky_full_v2.fits`) is located. It is further assumed that SoFiA is installed and can be launched with the command `sofia`. SoFiA can then be executed by simply running the
 
 ```
 run_sofia.sh
