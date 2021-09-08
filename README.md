@@ -26,6 +26,13 @@ Software versions other than the ones listed here may work as well, but have not
 In addition, access to an **HPC environment** with adequate resources and availability of the **Slurm workload manager** is required. For maximal speed, **80 compute nodes**, each with 27 GB of RAM and 8 parallel threads, would be required. However, SoFiA can be run without any problem on systems with fewer nodes/threads, although execution of the pipeline would take longer in this case.
 
 
+## FLowchart
+
+The following flowchart illustrates the individual steps taken by our team to run the source finder and convert the output into a single source catalogue that can be uploaded to the SDC2 scoring service. The individual steps are explained in the following sections of this document.
+
+![alt text](images/Team_SoFiA_Flowchart.png)
+
+
 ## Running SoFiA
 
 All of the configuration files required to run SoFiA on the full SDC2 data cube are located in the `sofia` folder. In order to launch the SoFiA run, all files contained in the folder `sofia` must be copied into the directory where the SDC2 data cube (`sky_full_v2.fits`) is located. It is further assumed that SoFiA is installed and can be launched with the command `sofia`. SoFiA can then be executed by simply running the
