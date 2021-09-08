@@ -93,9 +93,25 @@ The remaining sources can then be cross-matched using TOPCAT’s **Internal Matc
 
 This should create a new table named `match(1)` with all duplicate detections removed. Duplicates are here defined as detections that are located within 10.5 arcsec (~1.5 beam sizes) and 1.2 MHz (~380 km/s at redshift 0.5) of each other. The new table can now be **saved** again in **VOTable format** under a new name, for example `merged_catalogue_clean.xml`.
 
-### Parameter Conversion
+### Creation of Final Source Catalogue
 
-In the last step, the merged SoFiA 2 output catalogue must be **converted** into the format expected by the **SDC2 scoring service**. For this purpose, several source parameters will need to be converted from observational to physical units. This can be achieved by running the Python script provided in `scripts/physical_parameter_conversion.py`. Information on the different command-line options supported by the script can be found in the header of the source file. In addition to parameter conversion, the script will also apply statistical **noise bias corrections** for several parameters (flux, line width and disc size) which were derived from the 40 GB development data cube. For the final catalogue uploaded to the SDC2 scoring service, the following settings were used:
+In the last step, the merged SoFiA 2 output catalogue must be **converted** into the format expected by the **SDC2 scoring service**. For this purpose, several source parameters will need to be converted from observational to physical units. This can be achieved by running the Python script provided in `scripts/physical_parameter_conversion.py`. Information on the different command-line options supported by the script can be found in the header of the source file.
+
+The script carries out three different tasks:
+
+#### Removal of False Positives
+
+Additional filtering of sources in a multi-dimensional parameter space is carried out for the purpose of greatly reducing the number of false positives and improving the overall reliability of the source catalogue. More specifically, we remove all detections with _n_ < 700, _s_ > −0.00135 × (_n_ − 942) or _f_ < 0.18 × _snr_ + 0.17, where _n_ is the total number of spatial and spectral pixels contained within the source mask, _s_ is the skewness of the flux values within the mask, _f_ is the filling factor of the source mask within its three-dimensional, rectangular bounding box, and _snr_ is the integrated signal-to-noise ratio of the detection (i.e. the integrated flux divided by the statistical uncertainty of the flux). These were established during tests on the 40 GB development data cube and are highly effective at removing the bulk of the false detections caused by noise peaks.
+
+#### Physical Parameter Conversion
+
+Some of the source parameters requested to be submitted are physical parameters rather than observables. This requires some conversions to be carried out. Right ascension, declination, frequency and integrated flux are all observable which are natively supplied by SoFiA in the correct units. Likewise, SoFiA supplies the position angle of the kinematic major axis by default, although 180° must be added to SoFiA’s value to ensure that the position angle refers to the receding side of the galaxy. The w₂₀ line width measured by SoFiA will by default be in native frequency units (Hz) and must be converted to source rest frame velocity in km/s by multiplying by a factor of c (1 + _z_) / f₀, where c is the speed of light, _z_ is the cosmological redshift of the galaxy, and f₀ is the rest frequency of the HI emission line. Lastly, the HI disc size at a fixed mass surface density level and the inclination angle of the disc must be derived from the ellipse fit to the moment-0 image of the source. This step is non-trivial, and we refer to the comments in the conversion script for details on how the conversion is performed.
+
+#### Noise Bias Corrections
+
+Lastly, the script will also apply statistical **noise bias corrections** for several parameters (flux, line width and disc size) which were derived from the 40 GB development data cube. Such biases are the result of the impact of the noise on the measurement of basic parameters for sources near the detection threshold. Simple polynomial fits of the affacted parameters as a function of observed integrated flux are used to correct for these biases, resulting in a small improvement in overall parameterisation accuracy.
+
+For the final catalogue uploaded to the SDC2 scoring service, the following settings were used:
 
 ```
 python physical_parameter_conversion.py merged_catalogue_clean.xml 0.1 0.0 700 > sdc2_catalogue.dat
