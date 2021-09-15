@@ -10,9 +10,9 @@ This reporsitory contains information, scripts and setup files in relation to th
 
 more specifically development version 2.3.1, dated 22 July 2021, which is available for [download from GitHub](https://github.com/SoFiA-Admin/SoFiA-2/tree/11ff5fb01a8e3061a79d47b1ec3d353c429adf33). The purpose of this repository is to provide a copy of the SoFiA setup files used in the SDC2 in addition to a couple of Python scripts that our team used for postprocessing of the SoFiA output.
 
-> :warning: **WARNING** The scripts and setup files presented here were created specifically
-> for the purpose of maximising the score obtained by our team in the SDC2. They must not be
-> used to run SoFiA on real astronomical data!
+> :warning: **WARNING** — The scripts and setup files presented here were created specifically
+> for the purpose of maximising the score obtained by our team in the SDC2. We strongly advise
+> against using them to run SoFiA on real astronomical data!
 
 
 ## Prerequisites
