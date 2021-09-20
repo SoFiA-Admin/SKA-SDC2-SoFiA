@@ -1,6 +1,7 @@
 # SKA SDC2 Team “SoFiA”
 
 [![Linter](https://github.com/axshen/SKA-SDC2-SoFiA/actions/workflows/linter.yml/badge.svg)](https://github.com/axshen/SKA-SDC2-SoFiA/actions/workflows/linter.yml)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## Overview
 
